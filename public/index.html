@@ -9,7 +9,7 @@
 
     html {
       font-family: sans-serif;
-      background:#ffc600;
+      background:#00d9ff;
     }
 
     .inbox {
@@ -99,6 +99,55 @@
   </div>
 
 <script>
+  // const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+  //
+  // // it's a 'let' b/c it will be continually reassigned
+  // let lastChecked;
+  // function handleCheck(e) {
+  //   // check if they had shift key down
+  //   // AND check that they are checking, not unchecking the box
+  //   let inBetween = false;
+  //   if (e.shiftKey && this.checked) {
+  //   // loop over every checkbox
+  //   checkboxes.forEach(checkbox => {
+  //
+  //     console.log(checkbox);
+  //     if (checkbox === this || checkbox === lastChecked) {
+  //       // turn inBetween variable on or off
+  //       inBetween = !inBetween;
+  //       console.log('starting or stopping process');
+  //     }
+  //       if (inBetween) {
+  //         checkbox.checked = true;
+  //       }
+  //   });
+  //   }
+  //   lastChecked = this;
+  // }
+  //
+  // checkboxes.forEach(checkbox => checkbox.addEventListener('click',
+  // handleCheck));
+  //
+  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+  let lastChecked;
+  function handleCheck(e) {
+
+    let inBetween = false;
+    if (e.shiftKey && this.checked) {
+      checkboxes.forEach(checkbox => {
+        if (checkbox === this || checkbox === lastChecked) {
+          inBetween = !inBetween;
+        }
+        if (inBetween) {
+          checkbox.checked = true;
+        }
+      });
+    }
+    lastChecked = this;
+  }
+
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
 </script>
 </body>
 </html>
